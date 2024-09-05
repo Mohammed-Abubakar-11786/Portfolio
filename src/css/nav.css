@@ -1,0 +1,33 @@
+.animate {
+  animation: slide 1s forwards;
+}
+
+.CloseAnimate {
+  animation: slideClose 1s forwards;
+}
+
+@keyframes slide {
+  0% {
+    left: -17rem;
+  }
+
+  100% {
+    left: 0rem;
+  }
+}
+
+@keyframes slideClose {
+  0% {
+    left: 0rem;
+  }
+
+  100% {
+    left: -17rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #sideNav {
+    animation: slide 1s forwards;
+  }
+}

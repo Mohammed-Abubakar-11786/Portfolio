@@ -1,0 +1,39 @@
+/* GLOBAL STYLES */
+/* body {
+  background: #333;
+  padding-top: 5em;
+  display: flex;
+  justify-content: center;
+} */
+
+.skillAnimation {
+  animation: skillAnim forwards 2s;
+}
+
+.applyInitAnimat {
+  animation: initAnimate 1s forwards;
+}
+.hideScrollBar {
+  scrollbar-width: none;
+}
+
+@keyframes skillAnim {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes initAnimate {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
