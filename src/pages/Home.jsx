@@ -118,7 +118,7 @@ function Home() {
         onClick={handleCloseSideBar}
         className="absolute flex flex-col min-w-screen  justify-end top-0 left-0 md:left-[20.5rem] xl:right-0  -z-10"
       >
-        <section id="home-section w-full">
+        <section id="home-section" className=" w-full">
           <img
             src={myImg}
             className="!sticky top-0 left-0 w-full h-screen md:w-full object-cover rounded-2xl p-2"

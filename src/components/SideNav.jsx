@@ -2,7 +2,7 @@
 import "../css/nav.css";
 
 import myImgLogo from "../assets/myImgLogo.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SideNav() {
   // let navigate = useNavigate();
