@@ -32,7 +32,7 @@ function SideNav() {
     <>
       <div
         id="slideBtn"
-        className="md:hidden w-fit h-fit p-1 px-2 rounded-full bg-blue-500 fixed right-5 top-4 flex justify-center items-center"
+        className="hover:cursor-pointer md:hidden w-fit h-fit p-1 px-2 rounded-full bg-blue-500 fixed right-5 top-4 flex justify-center items-center"
         onClick={toggleSideNav}
       >
         <i className="fa-solid fa-bars text-xl shadow-lg text-white font-bold"></i>
