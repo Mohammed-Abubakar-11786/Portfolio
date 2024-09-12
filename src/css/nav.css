@@ -8,7 +8,7 @@
 
 @keyframes slide {
   0% {
-    left: -17rem;
+    left: -20rem;
   }
 
   100% {
@@ -22,7 +22,7 @@
   }
 
   100% {
-    left: -17rem;
+    left: -20rem;
   }
 }
 

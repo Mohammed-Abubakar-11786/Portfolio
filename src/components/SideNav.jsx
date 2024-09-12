@@ -40,7 +40,7 @@ function SideNav() {
 
       <div
         id="sideNav"
-        className="fixed flex flex-col items-center -left-[17rem] h-screen md:left-0 w-[40vh] md:w-[42.5vh] 2xl:w-[45vh] bg-blue-100  my-2 rounded-r-lg "
+        className="fixed flex flex-col items-center -left-[20rem] h-screen md:left-0 w-[40vh] md:w-[42.5vh] 2xl:w-[45vh] bg-blue-100  my-2 rounded-r-lg "
       >
         <div className="w-full flex justify-center mt-3">
           <img
