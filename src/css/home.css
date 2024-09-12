@@ -17,6 +17,10 @@
   scrollbar-width: none;
 }
 
+.headingAnimate {
+  animation: initAnimate 1s forwards;
+}
+
 @keyframes skillAnim {
   0% {
     width: 0%;

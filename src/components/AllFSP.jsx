@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import socialBookImg from "../assets/SocialBookImg.png";
-import wonderlustImg from "../assets/wonderlustImg.png";
+let socialBookImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145583/Portfolio/SocialBookImg_ttzicu.png";
+let wonderlustImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145584/Portfolio/wonderlustImg_vv0mud.png";
 
 function AllFSP() {
   return (

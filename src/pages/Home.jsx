@@ -1,6 +1,7 @@
 // import React from 'react'
 import "../css/home.css";
-import myImg from "../assets/myImage.jpg";
+let myImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145583/Portfolio/MyImage_s4cedd.jpg";
 import SideNav from "../components/SideNav";
 import { useEffect, useState } from "react";
 import AllProjects from "../components/AllProjects";
@@ -52,6 +53,11 @@ function Home() {
       threshold: 0.3, // Trigger when 20% of the section is visible
     };
 
+    const headingOption = {
+      root: null, // Uses the viewport as the root
+      threshold: 1, // Trigger when 100% of the section is visible
+    };
+
     const initAnimObserverOptions = {
       root: null, // Uses the viewport as the root
       threshold: 1, // Trigger when 20% of the section is visible
@@ -97,16 +103,29 @@ function Home() {
       });
     }, observerOptions);
 
+    const headingObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("headingAnimate");
+        }
+      });
+    }, headingOption);
+
+    const headings = document.querySelectorAll(".headingsToAnim");
+
     sections.forEach((section) => observer.observe(section));
 
     initAnimate.forEach((i) => initAnimObserver.observe(i));
 
     if (skillBars) skillBarObserver.observe(skillBars);
 
+    headings.forEach((heading) => headingObserver.observe(heading));
+
     return () => {
       observer.disconnect();
       initAnimObserver.disconnect();
       skillBarObserver.disconnect();
+      headingObserver.disconnect();
     };
   }, []);
 
@@ -128,10 +147,10 @@ function Home() {
           <div className="absolute top-0 flex flex-col justify-center items-center w-[98.7%] m-2  h-[100vh] bg-slate-100 opacity-50 rounded-t-2xl p-2"></div>
           <div className="absolute top-0 flex flex-col justify-center items-center w-[98.7%] m-2  h-[100vh] rounded-t-2xl p-2 mt-[15rem] ">
             <div className="bg-white p-2 rounded-xl">
-              <h1 className="font-bold text-4xl sm:text-5xl text-blue-500">
+              <h1 className="font-bold text-4xl lg:text-5xl text-blue-500">
                 Mohammed Abubakar
               </h1>
-              <h1 className="text-center text-sm sm:text-xl font-bold text-orange-500 md:text-2xl">
+              <h1 className="text-center text-lg lg:text-xl font-bold text-orange-500 xl:text-2xl">
                 Aspirant Software Developer
               </h1>
             </div>
@@ -141,7 +160,10 @@ function Home() {
           id="about-section"
           className="z-10 flex flex-col bg-blue-50 min-h-screen mx-2 px-3 sm:px-10 pt-5 sm:pt-10"
         >
-          <h1 className="text-3xl font-bold mr-auto text-blue-600 flex flex-col">
+          <h1
+            id="aboutMe"
+            className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 flex flex-col"
+          >
             <div>About Me</div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
@@ -167,7 +189,10 @@ function Home() {
           </h1>
           {/* //facts */}
           <div className="mr-auto text-lg text-left font-sans">
-            <h1 className="text-3xl font-bold text-blue-600 w-fit mt-6 mb-3 flex flex-col">
+            <h1
+              id="facts"
+              className="headingsToAnim text-3xl font-bold text-blue-600 w-fit mt-6 mb-3 flex flex-col"
+            >
               <div>Facts</div>
               <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
             </h1>
@@ -190,7 +215,10 @@ function Home() {
               </div>
             </div>
           </div>
-          <h1 className="text-3xl font-bold mr-auto text-blue-600 mt-6 flex flex-col">
+          <h1
+            id="skills"
+            className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 mt-6 flex flex-col"
+          >
             <div>Skills </div>
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
@@ -417,7 +445,10 @@ function Home() {
           id="projects-section"
           className="z-10 flex flex-col bg-blue-100 min-h-screen max-w-full mx-2 px-3 sm:px-10 pt-5 sm:pt-10 font-sans text-lg"
         >
-          <h1 className="text-3xl font-bold mr-auto text-blue-600 flex flex-col mb-3">
+          <h1
+            id="projects"
+            className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 flex flex-col mb-3"
+          >
             <div> Projects </div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
@@ -522,23 +553,37 @@ function Home() {
           id="resume-section"
           className="z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
         >
-          <h1 className="text-3xl font-bold mr-auto text-blue-600 ">Resume </h1>
+          <h1
+            id="resume"
+            className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 flex flex-col mb-3"
+          >
+            <div>Resume </div>{" "}
+            <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
+          </h1>
         </section>
 
         <section
           id="services-section"
           className="z-10 flex flex-col bg-blue-100 max-w-full min-h-screen mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
         >
-          <h1 className="text-3xl font-bold mr-auto text-blue-600 ">
-            Services{" "}
+          <h1
+            id="services"
+            className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 flex flex-col mb-3"
+          >
+            <div> Services </div>{" "}
+            <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
         </section>
         <section
           id="contact-section"
           className="z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
         >
-          <h1 className="text-3xl font-bold mr-auto text-blue-600 ">
-            Contact Me{" "}
+          <h1
+            id="contactMe"
+            className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 flex flex-col mb-3"
+          >
+            <div>Contact Me </div>{" "}
+            <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
         </section>
       </div>

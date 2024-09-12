@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import spotifyCloneImg from "../assets/spotifyCloneImg.png";
-import simpleCalciImg from "../assets/simpleCalciImg.png";
-import simonSayGameImg from "../assets/simonSayGameImg.png";
+let spotifyCloneImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145583/Portfolio/spotifyCloneImg_gzk4pt.png";
+let simpleCalciImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145582/Portfolio/simpleCalciImg_lr1aer.png";
+let simonSayGameImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145582/Portfolio/simonSayGameImg_dnq1ao.png";
 
 function FrontEnd() {
   return (

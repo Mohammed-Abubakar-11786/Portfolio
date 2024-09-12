@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-import socialBookImg from "../assets/SocialBookImg.png";
-import wonderlustImg from "../assets/wonderlustImg.png";
-import spotifyCloneImg from "../assets/spotifyCloneImg.png";
-import simpleCalciImg from "../assets/simpleCalciImg.png";
-import simonSayGameImg from "../assets/simonSayGameImg.png";
+let socialBookImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145583/Portfolio/SocialBookImg_ttzicu.png";
+let wonderlustImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145584/Portfolio/wonderlustImg_vv0mud.png";
+let spotifyCloneImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145583/Portfolio/spotifyCloneImg_gzk4pt.png";
+let simpleCalciImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145582/Portfolio/simpleCalciImg_lr1aer.png";
+let simonSayGameImg =
+  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726145582/Portfolio/simonSayGameImg_dnq1ao.png";
 
 function AllProjects() {
   return (
