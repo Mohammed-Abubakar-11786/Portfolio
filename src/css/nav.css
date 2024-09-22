@@ -8,21 +8,24 @@
 
 @keyframes slide {
   0% {
-    left: -20rem;
+    position: absolute;
+    left: -5rem;
   }
-
   100% {
+    position: absolute;
     left: 0rem;
   }
 }
 
 @keyframes slideClose {
   0% {
+    position: absolute;
     left: 0rem;
   }
 
   100% {
-    left: -20rem;
+    position: absolute;
+    left: -5rem;
   }
 }
 

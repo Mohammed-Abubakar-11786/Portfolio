@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import AllProjects from "../components/AllProjects";
 import AllFSP from "../components/AllFSP";
 import FrontEnd from "../components/FrontEnd";
+import { Link } from "react-router-dom";
 function Home() {
   let [projView, setProjectView] = useState({
     all: true,
@@ -42,11 +43,28 @@ function Home() {
     });
   };
 
+  let certiViewToggler = () => {
+    let certificateContainer = document.getElementById("certificate-Container");
+    certificateContainer.classList.toggle("overflow-auto");
+    certificateContainer.classList.toggle("overflow-hidden");
+    let certiViewToggler = document.getElementById("certiViewToggler");
+    if (certificateContainer.classList.contains("overflow-auto")) {
+      certiViewToggler.innerText = "View Less";
+      let lastCerti = document.getElementById("lastCerti");
+      lastCerti.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } else {
+      certiViewToggler.innerText = "View All";
+      let firstCert = document.getElementById("fastCeri");
+      firstCert.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
+
   useEffect(() => {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("#navItems a");
     const initAnimate = document.querySelectorAll(".initAnimate");
     const skillBars = document.getElementById("skillBars");
+    const educationSection = document.getElementById("educationSection");
 
     const observerOptions = {
       root: null, // Uses the viewport as the root
@@ -111,6 +129,17 @@ function Home() {
       });
     }, headingOption);
 
+    const educationSecObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let incHeights = document.querySelectorAll(".incHeight");
+          incHeights.forEach((el) => {
+            el.classList.add("increseHeightNow");
+          });
+        }
+      });
+    }, headingOption);
+
     const headings = document.querySelectorAll(".headingsToAnim");
 
     sections.forEach((section) => observer.observe(section));
@@ -118,6 +147,7 @@ function Home() {
     initAnimate.forEach((i) => initAnimObserver.observe(i));
 
     if (skillBars) skillBarObserver.observe(skillBars);
+    educationSecObserver.observe(educationSection);
 
     headings.forEach((heading) => headingObserver.observe(heading));
 
@@ -126,36 +156,43 @@ function Home() {
       initAnimObserver.disconnect();
       skillBarObserver.disconnect();
       headingObserver.disconnect();
+      educationSecObserver.disconnect();
     };
   }, []);
 
   return (
     <>
-      <SideNav />
-
+      {/* left part of home page  */}
+      <div className=" md:w-full h-full z-40">
+        {" "}
+        <SideNav />
+      </div>
+      {/* right part of home page  */}
       <div
         onClick={handleCloseSideBar}
-        className="absolute flex flex-col min-w-screen  justify-end top-0 left-0 md:left-[20.5rem] xl:right-0  -z-10"
+        className="absolute md:left-[25%] md:w-3/4 flex justify-self-end flex-col justify-end -z-10 w-screen  items-start"
       >
-        <section id="home-section" className=" w-full">
+        {/* home-section  */}
+        <section id="home-section" className="w-full">
           <img
             src={myImg}
-            className="!sticky top-0 left-0 w-full h-screen md:w-full object-cover rounded-2xl p-2"
+            className="w-full h-screen  object-cover rounded-2xl p-2 md:pt-0"
             alt=""
           />
 
-          <div className="absolute top-0 flex flex-col justify-center items-center w-[98.7%] m-2  h-[100vh] bg-slate-100 opacity-50 rounded-t-2xl p-2"></div>
-          <div className="absolute top-0 flex flex-col justify-center items-center w-[98.7%] m-2  h-[100vh] rounded-t-2xl p-2 mt-[15rem] ">
-            <div className="bg-white p-2 rounded-xl">
-              <h1 className="font-bold text-4xl lg:text-5xl text-blue-500">
+          <div className="absolute top-0 md:left-0 flex flex-col justify-center items-center w-full md:w-full md:mt-0 h-[100vh] bg-slate-100 opacity-50 rounded-t-2xl"></div>
+          <div className="absolute md:left-0  mx-auto top-0 flex flex-col justify-center items-center w-full md:w-full  h-[100vh] rounded-t-2xl  mt-[15rem] ">
+            <div className="bg-white p-2 md:px-7 rounded-xl">
+              <h1 className="font-bold text-2xl sm:text-4xl text-blue-500">
                 Mohammed Abubakar
               </h1>
-              <h1 className="text-center text-lg lg:text-xl font-bold text-orange-500 xl:text-2xl">
+              <h1 className="text-center text-sm sm:text-lg lg:text-xl font-bold text-orange-500 xl:text-2xl">
                 Aspirant Software Developer
               </h1>
             </div>
           </div>
         </section>
+        {/* about-section  */}
         <section
           id="about-section"
           className="z-10 flex flex-col bg-blue-50 min-h-screen mx-2 px-3 sm:px-10 pt-5 sm:pt-10"
@@ -167,7 +204,7 @@ function Home() {
             <div>About Me</div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
-          <h1 className="mt-5 text-lg text-left font-sans">
+          <h1 className="mt-5 text-left text-[17px] font-sans">
             Hello! <span className=" font-bold">I'm Mohammed Abubakar</span>,
             currently in my <span className=" font-bold">fourth year</span>
             &nbsp; pursuing a Bachelor of Engineering degree in Information
@@ -188,7 +225,7 @@ function Home() {
             </div>
           </h1>
           {/* //facts */}
-          <div className="mr-auto text-lg text-left font-sans">
+          <div className="mr-auto text-left text-[17px] font-sans">
             <h1
               id="facts"
               className="headingsToAnim text-3xl font-bold text-blue-600 w-fit mt-6 mb-3 flex flex-col"
@@ -399,10 +436,10 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-12 text-lg text-left font-sans">
+          <div className="mt-12 text-left text-[17px] font-sans">
             <div className="flex w-full justify-center items-start">
               <div>
-                <span className="text-blue-600 font-bold">
+                <span className="text-blue-600 font-bold text-xl">
                   Problem Solving with Data Structures And Algorithms:
                 </span>{" "}
                 I possess a strong ability to tackle complex problems by
@@ -423,9 +460,9 @@ function Home() {
               />
             </div>
           </div>
-          <div className="text-lg text-left font-sans mt-3">
+          <div className="text-[17px] text-left font-sans mt-3">
             {" "}
-            <span className="text-blue-600 font-bold text-lg  mr-auto">
+            <span className="text-blue-600 font-bold text-xl  mr-auto">
               Full Stack Web Development (MERN Stack):
             </span>{" "}
             Proficient in building complete web applications using <br />
@@ -441,9 +478,10 @@ function Home() {
           <br />
           <br />
         </section>
+        {/* projects-section  */}
         <section
           id="projects-section"
-          className="z-10 flex flex-col bg-blue-100 min-h-screen max-w-full mx-2 px-3 sm:px-10 pt-5 sm:pt-10 font-sans text-lg"
+          className="z-10 flex flex-col bg-blue-100 min-h-screen max-w-full mx-2 px-3 sm:px-10 pt-5 sm:pt-10 font-sans"
         >
           <h1
             id="projects"
@@ -483,19 +521,19 @@ function Home() {
             </p>
           </div>
 
-          <div className="container w-full h-[25.5rem] overflow-auto hideScrollBar bg-white rounded-lg mt-2">
+          <div className="mx-auto w-full h-[25.5rem] overflow-auto hideScrollBar bg-white rounded-lg mt-2">
             {projView.all ? <AllProjects /> : null}
 
             {projView.fullstack ? <AllFSP /> : null}
             {projView.frontEnd ? <FrontEnd /> : null}
           </div>
-          <div className="text-left w-full mt-6 mb-6">
+          <div className="text-[17px] text-left w-full mt-6 mb-6">
             <span className="font-bold text-blue-600 text-2xl">
               Full Stack Projects
             </span>
             <br />{" "}
-            <div className="flex justify-start gap-x-8 lg:gap-x-12 text-justify items-center my-3 w-full">
-              <div>
+            <div className=" flex justify-start gap-x-8 lg:gap-x-12 text-justify items-center my-3 w-full">
+              <div className="w-1/2 md:w-[45%] ">
                 <span className="text-orange-600 font-bold ">
                   ❖ Social Networking Site
                 </span>{" "}
@@ -507,7 +545,7 @@ function Home() {
                 liking, commenting, and sharing. Real-time one-on-one and group
                 chatting. Online/offline user status indication using Socket.io.
               </div>
-              <div>
+              <div className="w-1/2 md:w-[45%]">
                 <span className="text-orange-600 font-bold ">
                   ❖ Airbnb Clone
                 </span>
@@ -524,7 +562,7 @@ function Home() {
               {" "}
               Front End Projects{" "}
             </span>
-            <div className="flex justify-start items-center gap-x-6 lg:gap-x-12 mt-3">
+            <div className="flex flex-wrap justify-start items-center gap-x-6 lg:gap-x-12 mt-3">
               <div>
                 <span className="text-orange-600 font-bold">
                   Spotify Website Clone
@@ -549,9 +587,10 @@ function Home() {
             </div>
           </div>
         </section>
+        {/* resume-section  */}
         <section
           id="resume-section"
-          className="z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
+          className="text-[17px] z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
         >
           <h1
             id="resume"
@@ -560,20 +599,266 @@ function Home() {
             <div>Resume </div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
-        </section>
 
+          <p className="text-left">
+            I'm Mohammed Abubakar, currently pursuing a Bachelor of Engineering
+            degree. I’m passionate about Problem Solving using Data Structures
+            and Algorithms (DSA) and Creating Full Stack Web Applications.
+          </p>
+          <p className="text-2xl text-left font-bold mr-auto text-orange-500 mt-5">
+            ❖ Education
+          </p>
+          <div
+            id="educationSection"
+            className="flex justify-start gap-x-7 mb-10 items-start max-sm:flex-col"
+          >
+            <div className="md:w-1/2 w-full">
+              {/* Engineering */}
+              <div className="flex items-start gap-x-3 mt-3">
+                {/* //line a side */}
+                <div className="flex-col items-center justify-center h-full">
+                  <div className="w-5 h-5 rounded-full border-2 border-blue-500"></div>
+                  <div className="  h-[11rem] w-1 m-auto ">
+                    <div className="incHeight border-2 h-full w-full border-blue-500"></div>
+                  </div>
+                </div>
+                <div className="text-left">
+                  <p className="text-[18px] font-bold">
+                    {" "}
+                    Bachelor of Engineering B.E | ISE (4<sup>th</sup> Year){" "}
+                  </p>
+                  <p className="text-left text-sm text-orange-500 font-bold">
+                    CGPA: 9.04 (2021-2025)
+                  </p>
+                  <p className="italic mt-2 text-lg">
+                    HKBK College Of Engineering
+                  </p>
+
+                  <p className="mt-2 text-[17px]">
+                    Pursuing a Bachelor of Engineering degree in the branch of
+                    Information Science and Engineering Currently in my 4th year{" "}
+                    <br /> (7th semester) and engage most of my time in
+                    self-study to enhance my skills
+                  </p>
+                </div>
+              </div>
+              {/* 12th  */}
+              <div className="flex items-start gap-x-3 mt-3">
+                {/* //line a side */}
+                <div className="flex-col items-center justify-center h-full">
+                  <div className="w-5 h-5 rounded-full border-2 border-blue-500"></div>
+                  <div className="h-[13rem] max-h-max w-1 m-auto ">
+                    <div className="incHeight border-2 h-full w-full border-blue-500"></div>
+                  </div>
+                </div>
+                <div className="text-left">
+                  <p className="text-[18px] font-bold">
+                    {" "}
+                    Pre University Education | 12<sup>th</sup> (PCMC)
+                  </p>
+                  <p className="text-left text-sm text-orange-500 font-bold">
+                    Percentage : 89.6% (2019-2021)
+                  </p>
+                  <p className="italic mt-2 text-lg">
+                    Indiranagar Composite PU College
+                  </p>
+
+                  <p className="mt-2 text-[17px]">
+                    Successfully Completed the Pre University Course | 12
+                    <sup>th</sup> <br />
+                    with the Core Subjects as PCMC -{" "}
+                    <span className="text-orange-500 font-bold">
+                      Physics, Chemistry, Maths and Computer Science,
+                    </span>{" "}
+                    and this was the course from where my journey in tech got
+                    started, i completed this cource under Department of
+                    Pre-University Education
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* <div className="mx-auto h-52 border-[1.5px] border-orange-500"></div> */}
+            <div className="md:w-1/2 w-full">
+              {/* 10th */}
+              <div className="flex items-start gap-x-3 mt-3">
+                {/* //line a side */}
+                <div className="flex-col items-center justify-center h-full">
+                  <div className="w-5 h-5 rounded-full border-2 border-blue-500"></div>
+                  <div className="h-[12rem] max-h-max w-1 m-auto ">
+                    <div className="incHeight border-2 h-full w-full border-blue-500"></div>
+                  </div>
+                </div>
+                <div className="text-left">
+                  <p className="text-[18px] font-bold">
+                    {" "}
+                    Secondary Education | 10<sup>th</sup> (SSLC)
+                  </p>
+                  <p className="text-left text-sm text-orange-500 font-bold">
+                    Percentage : 85.3% (2019)
+                  </p>
+                  <p className="italic mt-2 text-lg">
+                    New Oxford English School
+                  </p>
+
+                  <p className="mt-2 text-[17px]">
+                    I completed my higher secondary education at New Oxford
+                    English School, Bengaluru and passed out by securing 85.3%
+                    in my 10<sup>th</sup> Examination, and Successfully obtained
+                    Secondary School Leaving Certificate, under Karnataka
+                    Secondary Education Examination Board [KSEEB]
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* achievements-section  */}
         <section
-          id="services-section"
+          id="achievements-section"
           className="z-10 flex flex-col bg-blue-100 max-w-full min-h-screen mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
         >
           <h1
-            id="services"
+            id="achievements"
             className="headingsToAnim text-3xl font-bold mr-auto text-blue-600 flex flex-col mb-3"
           >
-            <div> Services </div>{" "}
+            <div> Achievements </div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
+
+          <p className="text-left font-semibold text-[16px]">
+            ❖ Full Stack Web Development -{" "}
+            <span className="text-orange-500 font-bold">Apna College</span>{" "}
+            <br /> ❖ Android App Development -{" "}
+            <span className="text-orange-500 font-bold">
+              Combridge Infotech
+            </span>{" "}
+            <br /> ❖ Introduction to Artificial Intelligence -{" "}
+            <span className="text-orange-500 font-bold">
+              Infosys Springboard
+            </span>{" "}
+            <br /> ❖ Fundamentals of AI and ML -{" "}
+            <span className="text-orange-500 font-bold">
+              Infosys Springboard
+            </span>{" "}
+            <br /> ❖ Database Fundamentals Database Concepts -{" "}
+            <span className="text-orange-500 font-bold">
+              Infosys Springboard
+            </span>{" "}
+            <br /> ❖ Database Design -{" "}
+            <span className="text-orange-500 font-bold">
+              Infosys Springboard
+            </span>{" "}
+            <br /> ❖ Data Mining -{" "}
+            <span className="text-orange-500 font-bold">Great Learning</span>
+          </p>
+
+          <div
+            id="certificate-Container"
+            className="flex gap-x-14 gap-y-7 mt-6 mb-7 h-[30rem] overflow-hidden hideScrollBar flex-wrap justify-center items-center w-full"
+          >
+            <Link
+              className="w-3/4 md:w-[40%]"
+              to={
+                "https://drive.google.com/file/d/1AmvT64nHX0GymrmmjgHasuiuGTpztELk/view"
+              }
+            >
+              <img
+                id="fastCeri"
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Full_Stack_Web_Development_-_Apna_College_page-0001_s7qmgx.jpg"
+                }
+              />{" "}
+            </Link>
+            <Link
+              className="w-1/3"
+              to={
+                "https://drive.google.com/file/d/1RYDZI2NSDaIAwWle09iIc90rCXS2VGP5/view"
+              }
+            >
+              <img
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Android_App_Development_-_Combridge_Infotech_page-0001_tcpvqb.jpg"
+                }
+              />
+            </Link>
+            <Link
+              className="w-1/3"
+              to={
+                "https://drive.google.com/file/d/1nXEVwTegr_f8aCjIpyXvyU4dfpP5gzLF/view"
+              }
+            >
+              <img
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Database_Design_-_Infosys_Springboard_page-0001_d2zwyb.jpg"
+                }
+              />
+            </Link>
+            <Link
+              className="w-1/3"
+              to={
+                "https://drive.google.com/file/d/1hq8s3iJk46lKljldBmw6C2P1Ooh6GluF/view"
+              }
+            >
+              <img
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Database_Fundamentals_Database_Concepts_-_Infosys_Springboard_page-0001_baugxa.jpg"
+                }
+              />
+            </Link>
+            <Link
+              className="w-1/3"
+              to={
+                "https://drive.google.com/file/d/1uQhIBcXy5nEUU9C7DTb7JcEJBbBuZndb/view"
+              }
+            >
+              <img
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937221/Portfolio/certificates/Introduction_to_Artificial_Intelligence_-_Infosys_Springboard_page-0001_skqmsr.jpg"
+                }
+              />
+            </Link>
+            <Link
+              className="w-1/3"
+              to={
+                "https://drive.google.com/file/d/14FmGWSsEIGq4zNP1ESVrEbY0pA5ag2A9/view"
+              }
+            >
+              <img
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937221/Portfolio/certificates/Fundamentals_of_AI_and_ML_-_Infosys_Springboard_page-0001_jj2oxj.jpg"
+                }
+              />
+            </Link>
+            <Link
+              className="w-1/3"
+              id="lastCerti"
+              to={
+                "https://drive.google.com/file/d/1xb43v9bXq7YhfJh-pLys773u6-qJj3hF/view"
+              }
+            >
+              <img
+                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                src={
+                  "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937221/Portfolio/certificates/Data_Mining_-_Great_Learning_page-0001_rzfhru.jpg"
+                }
+              />
+            </Link>{" "}
+          </div>
+          <div
+            id="certiViewToggler"
+            className="cursor-pointer p-1 px-2 mb-3 w-fit mx-auto hover:bg-blue-500  bg-orange-500 text-white font-bold rounded-xl"
+            onClick={certiViewToggler}
+          >
+            <p>View All</p>
+          </div>
         </section>
+        {/* contact section  */}
         <section
           id="contact-section"
           className="z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
@@ -585,12 +870,169 @@ function Home() {
             <div>Contact Me </div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
+          <p className="text-left">
+            <h2 className="font-bold text-orange-500 text-[22px] ">
+              Get in Touch
+            </h2>
+            <p className="text-[17px] mt-3 font-semibold">
+              I’d love to hear from you! Whether you have a project in mind, a
+              question, or just want to say hi, feel free to send me a message.
+              I’ll respond as soon as possible.
+            </p>
+          </p>
+          <div className="w-full max-lg:flex-col lg:flex gap-x-2 text-left mt-3">
+            {/* contact details  */}
+            <div className="w-full lg:w-[50%]  rounded-xl gap-y-5 p-2">
+              {/* location */}
+              <div className="flex gap-x-2 items-start shadow-md p-2">
+                <div className="w-fit">
+                  <lord-icon
+                    src="https://cdn.lordicon.com/tdtlrbly.json"
+                    trigger="hover"
+                    style={{ width: "50px", height: "50px" }} // Adjust size here
+                  ></lord-icon>
+                </div>
+                <div className="flex-col gap-y-5 ">
+                  <p className="font-bold text-orange-500 text-[20px] ">
+                    Location
+                  </p>
+                  <p className="text-[15px] font-semibold">
+                    No. 507, 1<sup>st</sup> Cross 4<sup>th</sup> Main,
+                    VinayakaNagar AnnasandraPalya, Vimanapura Post, Bengaluru
+                    North - 560017
+                  </p>
+                </div>
+              </div>
+              {/* email */}
+              <div className="flex gap-x-2 items-start shadow-md p-2">
+                <div className="w-fit">
+                  <lord-icon
+                    src="https://cdn.lordicon.com/nqisoomz.json"
+                    trigger="hover"
+                    style={{ width: "50px", height: "50px" }}
+                  ></lord-icon>
+                </div>
+                <div className="flex-col gap-y-5 !overflow-ellipsis">
+                  <p className="font-bold text-orange-500 text-[20px] ">
+                    Email
+                  </p>
+
+                  <p className="text-[15px] font-semibold">
+                    mohdabubakar.11786@gmail.com
+                  </p>
+                </div>
+              </div>
+              {/* phone */}
+              <div className="flex gap-x-2 items-start shadow-md p-2">
+                <div className="w-fit">
+                  <lord-icon
+                    src="https://cdn.lordicon.com/mhhpoybt.json"
+                    trigger="hover"
+                    style={{ width: "50px", height: "50px" }}
+                  ></lord-icon>
+                </div>
+                <div className="flex-col gap-y-5 ">
+                  <p className="font-bold text-orange-500 text-[20px] ">
+                    Phone
+                  </p>
+                  <p className="text-[15px] font-semibold">+91 93531 47372</p>
+                </div>
+              </div>
+            </div>
+            {/* form to contact  */}
+            <div className="flex-col gap-x-2 h-fit shadow-md rounded-lg p-2">
+              <form action="" className="w-full">
+                <div className="w-full flex-col items-center">
+                  {/* first row */}
+                  <div className="w-full justify-center items-center flex gap-x-2">
+                    {/* Name  */}
+                    <div className="w-1/2 mb-2">
+                      <label
+                        htmlFor="name"
+                        className="text-orange-500 text-[19px] font-bold"
+                      >
+                        Name
+                      </label>
+                      <input
+                        className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                        type="text"
+                        name=""
+                        id="name"
+                      />
+                    </div>
+                    {/* Email  */}
+                    <div className="w-1/2 mb-2">
+                      {" "}
+                      <label
+                        htmlFor="email"
+                        className="text-orange-500 text-[19px] font-bold"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                        name=""
+                        id="email"
+                      />
+                    </div>
+                  </div>
+                  {/* subject  */}
+                  <div className="w-full mb-2">
+                    <label
+                      htmlFor="subject"
+                      className="text-orange-500 text-[19px] font-bold"
+                    >
+                      Subject
+                    </label>
+                    <input
+                      className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                      type="text"
+                      name=""
+                      id="subject"
+                    />
+                  </div>
+                  {/* message  */}
+                  <div className="mb-2">
+                    <label
+                      htmlFor="message"
+                      className="text-orange-500 text-[19px] font-bold"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      name=""
+                      id="message"
+                      className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                    ></textarea>
+                  </div>
+                  <button className="p-2 mb-2 bg-orange-500 hover:bg-blue-500 text-white font-bold rounded-xl">
+                    Send
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {/* map  */}
+          <div className="w-full my-8">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d923.4167465918638!2d77.67491564746867!3d12.962792495749932!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13d2a9c2523d%3A0x74a99ec8f1b7f827!2sMADARSA-E-HUSSAINIYA!5e0!3m2!1sen!2sin!4v1727026852138!5m2!1sen!2sin"
+              width="550"
+              height="350"
+              style={{ border: "0" }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Maps Location"
+              className="mx-auto w-[200px] min-[320px]:w-[275px] h-[200px] min-[402px]:w-[350px]  min-[468px]:w-[450px]  min-[629px]:w-[550px] min-[629px]:h-[350px]"
+            ></iframe>
+          </div>
         </section>
       </div>
-
+      {/* page up btn  */}
       <div
         id="upBtn"
-        className="fixed bottom-5 cursor-pointer right-5 p-2 bg-green-400 font-bold  hover:bg-black hover:text-white rounded-full"
+        className="fixed bottom-5 cursor-pointer right-5 p-2 bg-green-400 font-bold  hover:bg-black hover:text-white rounded-full z-50"
         onClick={handleUp}
       >
         Up

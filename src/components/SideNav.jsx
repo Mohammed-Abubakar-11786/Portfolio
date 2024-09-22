@@ -20,9 +20,13 @@ function SideNav() {
       slideBtn.classList.remove("bg-red-500");
       sideNav.classList.remove("animate");
       sideNav.classList.toggle("CloseAnimate");
+      setTimeout(() => {
+        sideNav.classList.add("hidden");
+      }, 500);
       slideBtn.innerHTML = `<i class="fa-solid fa-bars text-xl text-white font-bold shadow-lg "></i>`;
     } else {
       sideNav.classList.remove("CloseAnimate");
+      sideNav.classList.remove("hidden");
       sideNav.classList.toggle("animate");
       slideBtn.classList.toggle("bg-red-500");
       slideBtn.innerHTML = `<i class="fa-solid fa-xmark text-xl text-white font-bold"></i>`;
@@ -32,7 +36,7 @@ function SideNav() {
     <>
       <div
         id="slideBtn"
-        className="hover:cursor-pointer md:hidden w-fit h-fit p-1 px-2 rounded-full bg-blue-500 fixed right-5 top-4 flex justify-center items-center"
+        className="hover:cursor-pointer md:hidden w-fit h-fit p-1 px-2 rounded-full bg-blue-500 absolute right-5 top-4 flex justify-center items-center z-50"
         onClick={toggleSideNav}
       >
         <i className="fa-solid fa-bars text-xl shadow-lg text-white font-bold"></i>
@@ -40,7 +44,7 @@ function SideNav() {
 
       <div
         id="sideNav"
-        className="fixed flex flex-col items-center -left-[20rem] h-screen md:left-0 w-[40vh] md:w-[42.5vh] 2xl:w-[45vh] bg-blue-100  my-2 rounded-r-lg "
+        className="hidden !fixed top-0 left-0  md:flex md:flex-col md:items-center w-[60%] sm:w-[40%] md:w-1/4 h-screen bg-blue-100 rounded-r-lg z-50"
       >
         <div className="w-full flex justify-center mt-3">
           <img
@@ -79,7 +83,7 @@ function SideNav() {
 
         <div
           id="navItems"
-          className="container m-3 mx-auto mt-7 w-fit h-full flex flex-col  gap-2 items-start"
+          className="m-3 mx-auto mt-7 w-fit h-fit flex flex-col  gap-2 items-start"
         >
           <Link
             to="#home-section"
@@ -87,12 +91,11 @@ function SideNav() {
               toggleSideNav();
               scrollIntoView("home-section");
             }}
-            className="flex justify-center items-center text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-2 px-2 py-1 font-bold hover:bg-black hover:text-white"
+            className="flex justify-center items-center text-[17px] lg:text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-1 lg:gap-2 px-1 lg:px-2 py-[2px] lg:py-1 font-bold hover:bg-black hover:text-white"
           >
             <lord-icon
               src="https://cdn.lordicon.com/epietrpn.json"
               trigger="hover"
-              className="w-[100px] h-[100px]"
             ></lord-icon>
             <p>Home</p>
           </Link>
@@ -102,13 +105,13 @@ function SideNav() {
               toggleSideNav();
               scrollIntoView("about-section");
             }}
-            className="flex justify-center items-center text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-2 px-2 py-1 font-bold hover:bg-black hover:text-white"
+            className="flex justify-center items-center text-[17px] lg:text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-1 lg:gap-2 px-1 lg:px-2 py-[2px] lg:py-1 font-bold hover:bg-black hover:text-white"
           >
             <lord-icon
               src="https://cdn.lordicon.com/fmasbomy.json"
               trigger="hover"
               state="hover-nodding"
-              className="w-[100px] h-[100px]"
+              className="md:w-[100px] md:h-[100px]"
             ></lord-icon>
             <p>About</p>
           </Link>
@@ -119,7 +122,7 @@ function SideNav() {
               toggleSideNav();
               scrollIntoView("projects-section");
             }}
-            className="flex justify-center items-center text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-2 px-2 py-1 font-bold hover:bg-black hover:text-white"
+            className="flex justify-center items-center text-[17px] lg:text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-1 lg:gap-2 px-1 lg:px-2 py-[2px] lg:py-1 font-bold hover:bg-black hover:text-white"
           >
             <lord-icon
               src="https://cdn.lordicon.com/pbihtexz.json"
@@ -135,29 +138,29 @@ function SideNav() {
               toggleSideNav();
               scrollIntoView("resume-section");
             }}
-            className="flex justify-center items-center text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-2 px-2 py-1 font-bold hover:bg-black hover:text-white"
+            className="flex justify-center items-center text-[17px] lg:text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-1 lg:gap-2 px-1 lg:px-2 py-[2px] lg:py-1 font-bold hover:bg-black hover:text-white"
           >
             <lord-icon
               src="https://cdn.lordicon.com/ujxzdfjx.json"
               trigger="hover"
-              className="w-[100px] h-[]"
+              className="md:w-[100px] md:h-[100px]"
             ></lord-icon>{" "}
             <p>Resume</p>
           </Link>
           <Link
-            to="#services-section"
+            to="#achievements-section"
             onClick={() => {
               toggleSideNav();
-              scrollIntoView("services-section");
+              scrollIntoView("achievements-section");
             }}
-            className="flex justify-center items-center text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-2 px-2 py-1 font-bold hover:bg-black hover:text-white"
+            className="flex justify-center items-center text-[17px] lg:text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-1 lg:gap-2 px-1 lg:px-2 py-[2px] lg:py-1 font-bold hover:bg-black hover:text-white"
           >
             <lord-icon
               src="https://cdn.lordicon.com/okdadkfx.json"
               trigger="hover"
               colors="primary:#ffffff,secondary:#4bb3fd"
             ></lord-icon>
-            <p>services</p>
+            <p>Achievements</p>
           </Link>
           <Link
             to="#contact-section"
@@ -165,7 +168,7 @@ function SideNav() {
               toggleSideNav();
               scrollIntoView("contact-section");
             }}
-            className="flex justify-center items-center text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-2 px-2 py-1 font-bold hover:bg-black hover:text-white"
+            className="flex justify-center items-center text-[17px] lg:text-xl hover:cursor-pointer bg-white  rounded-xl shadow-sm gap-1 lg:gap-2 px-1 lg:px-2 py-[2px] lg:py-1 font-bold hover:bg-black hover:text-white"
           >
             <lord-icon
               src="https://cdn.lordicon.com/mhhpoybt.json"
@@ -176,7 +179,7 @@ function SideNav() {
           </Link>
         </div>
 
-        <div className="w-full h-24 rounded-b-lg relative shadow-md bottom-0 bg-white flex justify-center hover:cursor-pointer items-center text-lg font-bold">
+        <div className="w-full h-16 rounded-b-lg absolute bottom-0 shadow-md bg-white flex justify-center hover:cursor-pointer items-center text-[17px] md:text-lg font-bold">
           <p>&copy; Mohammed Abubakar</p>
         </div>
       </div>
