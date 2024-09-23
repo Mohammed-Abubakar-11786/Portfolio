@@ -163,7 +163,7 @@ function Home() {
   return (
     <>
       {/* left part of home page  */}
-      <div className=" md:w-full h-full z-40">
+      <div className="md:w-full h-full z-40">
         {" "}
         <SideNav />
       </div>
@@ -861,7 +861,7 @@ function Home() {
         {/* contact section  */}
         <section
           id="contact-section"
-          className="z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10"
+          className="z-10 flex flex-col bg-blue-50 min-h-screen max-w-full mx-2 px-2 sm:px-10 pt-5 sm:pt-10 rounded-b-lg"
         >
           <h1
             id="contactMe"
@@ -870,15 +870,13 @@ function Home() {
             <div>Contact Me </div>{" "}
             <div className="w-[40%] h-1 bg-orange-500 mt-2"></div>
           </h1>
-          <p className="text-left">
-            <h2 className="font-bold text-orange-500 text-[22px] ">
-              Get in Touch
-            </h2>
-            <p className="text-[17px] mt-3 font-semibold">
-              I’d love to hear from you! Whether you have a project in mind, a
-              question, or just want to say hi, feel free to send me a message.
-              I’ll respond as soon as possible.
-            </p>
+          <h2 className="text-left font-bold text-orange-500 text-[22px] ">
+            Get in Touch
+          </h2>
+          <p className="text-[17px] mt-3 font-semibold">
+            I’d love to hear from you! Whether you have a project in mind, a
+            question, or just want to say hi, feel free to send me a message.
+            I’ll respond as soon as possible.
           </p>
           <div className="w-full max-lg:flex-col lg:flex gap-x-2 text-left mt-3">
             {/* contact details  */}
@@ -1024,10 +1022,44 @@ function Home() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google Maps Location"
-              className="mx-auto w-[200px] min-[320px]:w-[275px] h-[200px] min-[402px]:w-[350px]  min-[468px]:w-[450px]  min-[629px]:w-[550px] min-[629px]:h-[350px]"
+              className="mx-auto w-[200px] min-[330px]:w-[275px] h-[200px] min-[410px]:w-[350px]  min-[478px]:w-[450px]  min-[867px]:w-[550px] min-[867px]:h-[350px]"
             ></iframe>
           </div>
         </section>
+
+        <div className="flex-col w-full p-2 justify-center mt-2 bg-white">
+          <div className="flex w-fit justify-center gap-3 mx-auto text-lg">
+            <Link to={"https://discord.com/invite/Zjm4ckBxdK"}>
+              <div
+                id="discordBtn"
+                className="rounded-full bg-black hover:bg-white hover:text-black text-white font-bold shadow-lg px-[5px] py-[2px]"
+              >
+                {" "}
+                <i className="fa-brands fa-discord"></i>
+              </div>
+            </Link>
+            <Link
+              to={
+                "https://www.linkedin.com/in/mohammed-abubakar-479754298?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+              }
+            >
+              <div className="rounded-full hover:bg-white hover:text-black bg-black  text-white font-bold shadow-lg px-[6px] py-[2px]">
+                <i className="fa-brands fa-linkedin"></i>
+              </div>
+            </Link>
+
+            <Link to={"https://github.com/Mohammed-Abubakar-11786"}>
+              <div className="rounded-full hover:bg-white hover:text-black bg-black  text-white font-bold shadow-lg px-[6px] py-[2px]">
+                <i className="fa-brands fa-github"></i>
+              </div>
+            </Link>
+          </div>
+
+          <div className="font-semibold text-[15px] mt-2">
+            <p> +91 93531 47372 | mohdabubakar.11786@gmail.com</p>
+            <p>&copy; Mohammed Abubakar</p>
+          </div>
+        </div>
       </div>
       {/* page up btn  */}
       <div
