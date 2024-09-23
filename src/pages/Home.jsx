@@ -23,6 +23,7 @@ function Home() {
       slideBtn.classList.remove("bg-red-500");
       sideNav.classList.remove("animate");
       sideNav.classList.toggle("CloseAnimate");
+      sideNav.classList.add("hidden");
       slideBtn.innerHTML = `<i class="fa-solid fa-bars text-xl text-white font-bold shadow-lg "></i>`;
     }
   };
@@ -618,7 +619,7 @@ function Home() {
                 {/* //line a side */}
                 <div className="flex-col items-center justify-center h-full">
                   <div className="w-5 h-5 rounded-full border-2 border-blue-500"></div>
-                  <div className="  h-[11rem] w-1 m-auto ">
+                  <div className="h-[18rem] min-[360px]:h-[11rem] w-1 m-auto ">
                     <div className="incHeight border-2 h-full w-full border-blue-500"></div>
                   </div>
                 </div>
@@ -647,7 +648,7 @@ function Home() {
                 {/* //line a side */}
                 <div className="flex-col items-center justify-center h-full">
                   <div className="w-5 h-5 rounded-full border-2 border-blue-500"></div>
-                  <div className="h-[13rem] max-h-max w-1 m-auto ">
+                  <div className="h-[23rem] min-[360px]:h-[13rem] max-h-max w-1 m-auto ">
                     <div className="incHeight border-2 h-full w-full border-blue-500"></div>
                   </div>
                 </div>
@@ -684,7 +685,7 @@ function Home() {
                 {/* //line a side */}
                 <div className="flex-col items-center justify-center h-full">
                   <div className="w-5 h-5 rounded-full border-2 border-blue-500"></div>
-                  <div className="h-[12rem] max-h-max w-1 m-auto ">
+                  <div className="h-[19rem] min-[360px]:h-[12rem] max-h-max w-1 m-auto ">
                     <div className="incHeight border-2 h-full w-full border-blue-500"></div>
                   </div>
                 </div>
@@ -873,14 +874,14 @@ function Home() {
           <h2 className="text-left font-bold text-orange-500 text-[22px] ">
             Get in Touch
           </h2>
-          <p className="text-[17px] mt-3 font-semibold">
+          <p className="text-[17px] mt-3 font-semibold text-left">
             I’d love to hear from you! Whether you have a project in mind, a
             question, or just want to say hi, feel free to send me a message.
             I’ll respond as soon as possible.
           </p>
           <div className="w-full max-lg:flex-col lg:flex gap-x-2 text-left mt-3">
             {/* contact details  */}
-            <div className="w-full lg:w-[50%]  rounded-xl gap-y-5 p-2">
+            <div className="w-full lg:w-[50%] rounded-xl gap-y-5 p-2">
               {/* location */}
               <div className="flex gap-x-2 items-start shadow-md p-2">
                 <div className="w-fit">
@@ -938,77 +939,79 @@ function Home() {
               </div>
             </div>
             {/* form to contact  */}
-            <div className="flex-col gap-x-2 h-fit shadow-md rounded-lg p-2">
-              <form action="" className="w-full">
-                <div className="w-full flex-col items-center">
-                  {/* first row */}
-                  <div className="w-full justify-center items-center flex gap-x-2">
-                    {/* Name  */}
-                    <div className="w-1/2 mb-2">
+            <div className="p-2">
+              <div className="flex-col gap-x-2 w-full h-fit shadow-md p-2">
+                <form action="" className="w-full">
+                  <div className="w-full flex-col items-center">
+                    {/* first row */}
+                    <div className="w-full justify-center items-center flex gap-x-2">
+                      {/* Name  */}
+                      <div className="w-1/2 mb-2">
+                        <label
+                          htmlFor="name"
+                          className="text-orange-500 text-[19px] font-bold"
+                        >
+                          Name
+                        </label>
+                        <input
+                          className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                          type="text"
+                          name=""
+                          id="name"
+                        />
+                      </div>
+                      {/* Email  */}
+                      <div className="w-1/2 mb-2">
+                        {" "}
+                        <label
+                          htmlFor="email"
+                          className="text-orange-500 text-[19px] font-bold"
+                        >
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                          name=""
+                          id="email"
+                        />
+                      </div>
+                    </div>
+                    {/* subject  */}
+                    <div className="w-full mb-2">
                       <label
-                        htmlFor="name"
+                        htmlFor="subject"
                         className="text-orange-500 text-[19px] font-bold"
                       >
-                        Name
+                        Subject
                       </label>
                       <input
                         className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
                         type="text"
                         name=""
-                        id="name"
+                        id="subject"
                       />
                     </div>
-                    {/* Email  */}
-                    <div className="w-1/2 mb-2">
-                      {" "}
+                    {/* message  */}
+                    <div className="mb-2">
                       <label
-                        htmlFor="email"
+                        htmlFor="message"
                         className="text-orange-500 text-[19px] font-bold"
                       >
-                        Email
+                        Message
                       </label>
-                      <input
-                        type="email"
-                        className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                      <textarea
                         name=""
-                        id="email"
-                      />
+                        id="message"
+                        className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
+                      ></textarea>
                     </div>
+                    <button className="p-2 mb-2 bg-orange-500 hover:bg-blue-500 text-white font-bold rounded-xl">
+                      Send
+                    </button>
                   </div>
-                  {/* subject  */}
-                  <div className="w-full mb-2">
-                    <label
-                      htmlFor="subject"
-                      className="text-orange-500 text-[19px] font-bold"
-                    >
-                      Subject
-                    </label>
-                    <input
-                      className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
-                      type="text"
-                      name=""
-                      id="subject"
-                    />
-                  </div>
-                  {/* message  */}
-                  <div className="mb-2">
-                    <label
-                      htmlFor="message"
-                      className="text-orange-500 text-[19px] font-bold"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      name=""
-                      id="message"
-                      className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
-                    ></textarea>
-                  </div>
-                  <button className="p-2 mb-2 bg-orange-500 hover:bg-blue-500 text-white font-bold rounded-xl">
-                    Send
-                  </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
           {/* map  */}

@@ -15,16 +15,22 @@ function SideNav() {
   let toggleSideNav = () => {
     let sideNav = document.getElementById("sideNav");
     let slideBtn = document.getElementById("slideBtn");
+    let closerSidNav = document.getElementById("closerSidNav");
 
     if (sideNav.classList.contains("animate")) {
       slideBtn.classList.remove("bg-red-500");
+      closerSidNav.classList.toggle("hidden");
       sideNav.classList.remove("animate");
       sideNav.classList.toggle("CloseAnimate");
-      setTimeout(() => {
-        sideNav.classList.add("hidden");
-      }, 500);
+      sideNav.classList.add("hidden");
+
+      // setTimeout(() => {
+      //   sideNav.classList.add("hidden");
+      // }, 500);
       slideBtn.innerHTML = `<i class="fa-solid fa-bars text-xl text-white font-bold shadow-lg "></i>`;
     } else {
+      closerSidNav.classList.toggle("hidden");
+
       sideNav.classList.remove("CloseAnimate");
       sideNav.classList.remove("hidden");
       sideNav.classList.toggle("animate");
@@ -41,6 +47,11 @@ function SideNav() {
       >
         <i className="fa-solid fa-bars text-xl shadow-lg text-white font-bold"></i>
       </div>
+      <div
+        id="closerSidNav"
+        onClick={toggleSideNav}
+        className="absolute hidden w-screen h-[100vh] top-0 left-0 z-[49]"
+      ></div>
 
       <div
         id="sideNav"
