@@ -42,7 +42,7 @@ function SideNav() {
     <>
       <div
         id="slideBtn"
-        className="hover:cursor-pointer md:hidden w-fit h-fit p-1 px-2 rounded-full bg-blue-500 fixed right-5 top-4 flex justify-center items-center z-50"
+        className="hover:cursor-pointer md:hidden w-fit h-fit p-1 px-2 rounded-full bg-blue-500 fixed right-5 top-4 flex justify-center items-center z-49"
         onClick={toggleSideNav}
       >
         <i className="fa-solid fa-bars text-xl shadow-lg text-white font-bold"></i>
@@ -50,12 +50,12 @@ function SideNav() {
       <div
         id="closerSidNav"
         onClick={toggleSideNav}
-        className="absolute hidden w-screen h-[100vh] top-0 left-0 z-[49]"
+        className="absolute hidden w-screen h-[100vh] top-0 left-0 z-[48]"
       ></div>
 
       <div
         id="sideNav"
-        className="hidden !fixed top-0 left-0  md:flex md:flex-col md:items-center w-[60%] sm:w-[40%] md:w-1/4 h-screen bg-blue-100 rounded-r-lg z-50"
+        className="hidden !fixed top-0 left-0  md:flex md:flex-col md:items-center w-[60%] sm:w-[40%] md:w-1/4 h-screen bg-blue-100 rounded-r-lg z-49"
       >
         <div className="w-full flex justify-center mt-3">
           <img

@@ -8,6 +8,9 @@ import AllProjects from "../components/AllProjects";
 import AllFSP from "../components/AllFSP";
 import FrontEnd from "../components/FrontEnd";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { flashError, flashSuccess } from "../helper/flashMsgProvider";
+import FlashMsg from "../components/FlashMsg";
 function Home() {
   let [projView, setProjectView] = useState({
     all: true,
@@ -57,6 +60,75 @@ function Home() {
       certiViewToggler.innerText = "View All";
       let firstCert = document.getElementById("fastCeri");
       firstCert.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
+
+  let [isLoading, setIsLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  let [nameError, setNameError] = useState(false);
+  let [emailError, setEmailError] = useState(false);
+  let [msgError, setMsgError] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (formData.name) setNameError(false);
+    if (formData.email) setEmailError(false);
+    if (formData.message) setMsgError(false);
+  };
+
+  const contactForm = async (e) => {
+    e.preventDefault();
+
+    if (formData.name) setNameError(false);
+    else setNameError(true);
+    if (formData.email) setEmailError(false);
+    else setEmailError(true);
+    if (formData.message) setMsgError(false);
+    else setMsgError(true);
+
+    try {
+      if (formData.name && formData.email && formData.message) {
+        let url = `${import.meta.env.VITE_API_BACKEND_URL}/submitContactForm`;
+        setIsLoading(true);
+        let res = await axios.post(url, formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (res.data.success) {
+          setIsLoading(false);
+          flashSuccess(
+            "Form submitted successfully! I will contact you very soon!"
+          );
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+        } else {
+          setIsLoading(false);
+          flashError(
+            "There was an error submitting the form. Please try again later"
+          );
+        }
+      } else {
+        flashError("Fill the Required fields *");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setIsLoading(false);
+      flashError(
+        "There was an error submitting the form. Please try again later"
+      );
     }
   };
 
@@ -163,6 +235,7 @@ function Home() {
 
   return (
     <>
+      <FlashMsg />
       {/* left part of home page  */}
       <div className="md:w-full h-full z-40">
         {" "}
@@ -941,7 +1014,7 @@ function Home() {
             {/* form to contact  */}
             <div className="p-2">
               <div className="flex-col gap-x-2 w-full h-fit shadow-md p-2">
-                <form action="" className="w-full">
+                <form onSubmit={contactForm} className="w-full">
                   <div className="w-full flex-col items-center">
                     {/* first row */}
                     <div className="w-full justify-center items-center flex gap-x-2">
@@ -949,15 +1022,22 @@ function Home() {
                       <div className="w-1/2 mb-2">
                         <label
                           htmlFor="name"
-                          className="text-orange-500 text-[19px] font-bold"
+                          className="text-orange-500 text-[17px] font-bold"
                         >
-                          Name
+                          Your Name<sup>*</sup>{" "}
+                          {nameError ? (
+                            <span className="text-xs text-red-500 font-bold">
+                              &nbsp;Your Name is required
+                            </span>
+                          ) : null}
                         </label>
                         <input
                           className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
                           type="text"
-                          name=""
+                          name="name"
                           id="name"
+                          onChange={handleChange}
+                          value={formData.name}
                         />
                       </div>
                       {/* Email  */}
@@ -965,15 +1045,22 @@ function Home() {
                         {" "}
                         <label
                           htmlFor="email"
-                          className="text-orange-500 text-[19px] font-bold"
+                          className="text-orange-500 font-bold text-[17px]"
                         >
-                          Email
+                          Email<sup>*</sup>{" "}
+                          {emailError ? (
+                            <span className="text-xs text-red-500 font-bold">
+                              &nbsp;Your Email is required
+                            </span>
+                          ) : null}
                         </label>
                         <input
                           type="email"
                           className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
-                          name=""
+                          name="email"
                           id="email"
+                          onChange={handleChange}
+                          value={formData.email}
                         />
                       </div>
                     </div>
@@ -981,38 +1068,61 @@ function Home() {
                     <div className="w-full mb-2">
                       <label
                         htmlFor="subject"
-                        className="text-orange-500 text-[19px] font-bold"
+                        className="text-orange-500 font-bold text-[17px]"
                       >
                         Subject
                       </label>
                       <input
                         className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
                         type="text"
-                        name=""
+                        name="subject"
                         id="subject"
+                        onChange={handleChange}
+                        value={formData.subject}
                       />
                     </div>
                     {/* message  */}
                     <div className="mb-2">
                       <label
                         htmlFor="message"
-                        className="text-orange-500 text-[19px] font-bold"
+                        className="text-orange-500 text-[17px] font-bold"
                       >
-                        Message
+                        Message<sup>*</sup>{" "}
+                        {msgError ? (
+                          <span className="text-xs text-red-500 font-bold">
+                            &nbsp;Message is required
+                          </span>
+                        ) : null}
                       </label>
                       <textarea
-                        name=""
+                        name="message"
                         id="message"
+                        onChange={handleChange}
+                        value={formData.message}
                         className="w-full shadow-md border-gray-500 rounded-lg p-1 focus:outline-blue-700"
                       ></textarea>
                     </div>
-                    <button className="p-2 mb-2 bg-orange-500 hover:bg-blue-500 text-white font-bold rounded-xl">
+                    <button
+                      type="submit"
+                      className="p-2 mb-2 bg-orange-500 hover:bg-blue-500 text-white font-bold rounded-xl"
+                    >
                       Send
                     </button>
                   </div>
                 </form>
               </div>
             </div>
+            {isLoading ? (
+              <div
+                id="loading"
+                className="fixed top-0 left-0 md:left-[10%] w-screen h-screen bg-gray-500 bg-opacity-75 flex justify-center items-center"
+              >
+                <div className="loader text-3xl font-bold text-white">
+                  Please wait...
+                </div>{" "}
+                {/* Add your loading animation */}
+              </div>
+            ) : null}
           </div>
           {/* map  */}
           <div className="w-full my-8">
@@ -1029,7 +1139,7 @@ function Home() {
             ></iframe>
           </div>
         </section>
-
+        {/* footer  */}
         <div className="flex-col w-full p-2 justify-center mt-2 bg-white">
           <div className="flex w-fit justify-center gap-3 mx-auto text-lg">
             <Link to={"https://discord.com/invite/Zjm4ckBxdK"}>
@@ -1058,6 +1168,7 @@ function Home() {
             </Link>
           </div>
 
+          {/* footer */}
           <div className="font-semibold text-[15px] mt-2">
             <p> +91 93531 47372 | mohdabubakar.11786@gmail.com</p>
             <p>&copy; Mohammed Abubakar</p>
