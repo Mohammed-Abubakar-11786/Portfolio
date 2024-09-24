@@ -8,6 +8,13 @@ app.use(cors());
 require("dotenv").config();
 app.use(bodyParser.json());
 
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*",
+    credentials: true,
+  })
+);
+
 const PORT = process.env.PORT || 8181;
 
 let transporter = nodemailer.createTransport({
