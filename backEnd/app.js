@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "https://abubakar11786-portfolio.vercel.app" || "*",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
