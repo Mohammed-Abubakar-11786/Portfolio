@@ -55,7 +55,7 @@ app.post("/submitContactForm", async (req, res) => {
     });
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).send({
+    res.status(200).send({
       success: false,
       message: "Error submitting form or sending email.",
     });
