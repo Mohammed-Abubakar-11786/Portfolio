@@ -36,7 +36,10 @@ let transporter = nodemailer.createTransport({
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("Abu");
+  res.status(200).send({
+    success: true,
+    message: "Server listerning",
+  });
 });
 
 // Contact form route
