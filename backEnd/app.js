@@ -14,7 +14,7 @@ app.use(
   })
 );
 
-// app.options("/submitContactForm", cors()); // Handle preflight requests
+app.options("/submitContactForm", cors()); // Handle preflight requests
 
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
