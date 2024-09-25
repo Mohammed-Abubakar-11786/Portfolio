@@ -17,14 +17,8 @@ app.use(
 
 app.use(express.json());
 
-// app.options("/submitContactForm", cors()); // Handle preflight requests
-
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   next();
-// });
+// Handle preflight requests for all routes
+app.options("*", cors());
 
 const PORT = process.env.PORT || 8181;
 
@@ -36,7 +30,7 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-app.get("/abu", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Abu");
 });
 app.post("/submitContactForm", async (req, res) => {
