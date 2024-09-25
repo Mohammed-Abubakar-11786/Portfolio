@@ -4,13 +4,12 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 
 const app = express();
-app.use(cors());
 require("dotenv").config();
 app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "https://abubakar-portfolio-five.vercel.app",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
