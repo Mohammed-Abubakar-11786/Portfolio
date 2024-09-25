@@ -10,11 +10,14 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
+    methods: ["POST", "GET"],
     credentials: true,
   })
 );
 
-app.options("/submitContactForm", cors()); // Handle preflight requests
+app.use(express.json());
+
+// app.options("/submitContactForm", cors()); // Handle preflight requests
 
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
