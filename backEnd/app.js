@@ -7,12 +7,7 @@ const app = express();
 require("dotenv").config();
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 // app.options("/submitContactForm", cors()); // Handle preflight requests
 
