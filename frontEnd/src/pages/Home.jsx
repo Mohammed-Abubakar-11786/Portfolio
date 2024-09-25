@@ -144,6 +144,11 @@ function Home() {
       threshold: 0.3, // Trigger when 20% of the section is visible
     };
 
+    const educationSecOptions = {
+      root: null, // Uses the viewport as the root
+      threshold: 0.7, // Trigger when 20% of the section is visible
+    };
+
     const headingOption = {
       root: null, // Uses the viewport as the root
       threshold: 1, // Trigger when 100% of the section is visible
@@ -211,7 +216,7 @@ function Home() {
           });
         }
       });
-    }, headingOption);
+    }, educationSecOptions);
 
     const headings = document.querySelectorAll(".headingsToAnim");
 

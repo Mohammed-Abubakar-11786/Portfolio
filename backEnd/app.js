@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -5,7 +8,7 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 require("dotenv").config();
-
+const http = require("http").Server(app);
 app.use(bodyParser.json());
 
 // CORS setup: Move this to the top and add options handling for all routes.
@@ -17,14 +20,14 @@ app.use(
   })
 );
 
-// Handle preflight requests globally
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// // Handle preflight requests globally
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 
 // Additional middleware
 app.use(express.json());
@@ -84,6 +87,6 @@ app.post("/submitContactForm", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+http.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
