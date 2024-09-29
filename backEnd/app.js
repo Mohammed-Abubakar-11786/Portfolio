@@ -12,14 +12,11 @@ const http = require("http").Server(app);
 app.use(bodyParser.json());
 
 // CORS setup: Move this to the top and add options handling for all routes.
+
 app.use(
   cors({
-    // origin: process.env.FRONTEND_URL || "*", // Allow from specific frontend URL or any if undefined
-    // methods: ["POST", "GET", "OPTIONS"], // Ensure OPTIONS is included
-    // credentials: true, // Allow cookies and credentials
-    allowedHeaders: "*",
-    allowMethods: "*",
-    origin: process.env.FRONTEND_URL,
+    origin: "https://abubakar11786-portfolio.vercel.app", // Replace with your frontend's Vercel domain
+    credentials: true, // Allow cookies for authentication (if needed)
   })
 );
 
