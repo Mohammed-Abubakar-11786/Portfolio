@@ -19,7 +19,7 @@ app.use(
     // credentials: true, // Allow cookies and credentials
     allowedHeaders: "*",
     allowMethods: "*",
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
   })
 );
 
