@@ -8,26 +8,17 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 require("dotenv").config();
-const http = require("http").Server(app);
+
 app.use(bodyParser.json());
 
 // CORS setup: Move this to the top and add options handling for all routes.
-
 app.use(
   cors({
-    origin: "https://abubakar11786-portfolio.vercel.app", // Replace with your frontend's Vercel domain
-    credentials: true, // Allow cookies for authentication (if needed)
+    origin: process.env.FRONTEND_URL || "*", // Allow from specific frontend URL or any if undefined
+    methods: ["POST", "GET", "OPTIONS"], // Ensure OPTIONS is included
+    credentials: true, // Allow cookies and credentials
   })
 );
-
-// // Handle preflight requests globally
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "*");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   next();
-// });
 
 // Additional middleware
 app.use(express.json());
@@ -87,6 +78,7 @@ app.post("/submitContactForm", async (req, res) => {
   }
 });
 
+const http = require("http").Server(app);
 http.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
