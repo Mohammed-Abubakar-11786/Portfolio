@@ -44,23 +44,23 @@ app.get("/", (req, res) => {
 
 // Contact form route
 app.post("/submitContactForm", async (req, res) => {
-  const { name, email, subject, message } = req.body;
-
-  let mailOptionsToYou = {
-    from: email,
-    to: process.env.EMAIL_USERNAME,
-    subject: `Contact Form Submission: ${subject}`,
-    text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
-  };
-
-  let mailOptionsToUser = {
-    from: process.env.EMAIL_USERNAME,
-    to: email,
-    subject: "Contact Form Submitted",
-    text: `Thank you for getting in touch, ${name}. Your form has been submitted, and Abubakar will contact you very soon!`,
-  };
-
   try {
+    const { name, email, subject, message } = req.body;
+
+    let mailOptionsToYou = {
+      from: email,
+      to: process.env.EMAIL_USERNAME,
+      subject: `Contact Form Submission: ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
+    };
+
+    let mailOptionsToUser = {
+      from: process.env.EMAIL_USERNAME,
+      to: email,
+      subject: "Contact Form Submitted",
+      text: `Thank you for getting in touch, ${name}. Your form has been submitted, and Abubakar will contact you very soon!`,
+    };
+
     await transporter.sendMail(mailOptionsToYou);
     await transporter.sendMail(mailOptionsToUser);
 
