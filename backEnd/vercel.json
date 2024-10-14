@@ -1,6 +1,5 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
-  "cleanUrls": true,
   "version": 2,
   "builds": [
     {
