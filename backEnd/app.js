@@ -41,6 +41,7 @@ app.use(async (req, res) => {
     res.status(200).end();
     return;
   }
+  res.status(200).end();
   return await fn(req, res);
 });
 
