@@ -836,93 +836,93 @@ function Home() {
             className="flex gap-x-14 gap-y-7 mt-6 mb-7 h-[30rem] overflow-hidden hideScrollBar flex-wrap justify-center items-center w-full"
           >
             <Link
-              className="w-3/4 md:w-[40%]"
+              className="w-3/5 md:w-[40%]"
               to={
                 "https://drive.google.com/file/d/1AmvT64nHX0GymrmmjgHasuiuGTpztELk/view"
               }
             >
               <img
                 id="fastCeri"
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Full_Stack_Web_Development_-_Apna_College_page-0001_s7qmgx.jpg"
                 }
               />{" "}
             </Link>
             <Link
-              className="w-1/3"
+              className="w-3/5 md:w-[40%]"
               to={
                 "https://drive.google.com/file/d/1RYDZI2NSDaIAwWle09iIc90rCXS2VGP5/view"
               }
             >
               <img
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Android_App_Development_-_Combridge_Infotech_page-0001_tcpvqb.jpg"
                 }
               />
             </Link>
             <Link
-              className="w-1/3"
+              className="w-3/5 md:w-[40%]"
               to={
                 "https://drive.google.com/file/d/1nXEVwTegr_f8aCjIpyXvyU4dfpP5gzLF/view"
               }
             >
               <img
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Database_Design_-_Infosys_Springboard_page-0001_d2zwyb.jpg"
                 }
               />
             </Link>
             <Link
-              className="w-1/3"
+              className="w-3/5 md:w-[40%]"
               to={
                 "https://drive.google.com/file/d/1hq8s3iJk46lKljldBmw6C2P1Ooh6GluF/view"
               }
             >
               <img
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937220/Portfolio/certificates/Database_Fundamentals_Database_Concepts_-_Infosys_Springboard_page-0001_baugxa.jpg"
                 }
               />
             </Link>
             <Link
-              className="w-1/3"
+              className="w-3/5 md:w-[40%]"
               to={
                 "https://drive.google.com/file/d/1uQhIBcXy5nEUU9C7DTb7JcEJBbBuZndb/view"
               }
             >
               <img
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937221/Portfolio/certificates/Introduction_to_Artificial_Intelligence_-_Infosys_Springboard_page-0001_skqmsr.jpg"
                 }
               />
             </Link>
             <Link
-              className="w-1/3"
+              className="w-3/5 md:w-[40%]"
               to={
                 "https://drive.google.com/file/d/14FmGWSsEIGq4zNP1ESVrEbY0pA5ag2A9/view"
               }
             >
               <img
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937221/Portfolio/certificates/Fundamentals_of_AI_and_ML_-_Infosys_Springboard_page-0001_jj2oxj.jpg"
                 }
               />
             </Link>
             <Link
-              className="w-1/3"
+              className="w-3/5 md:w-[40%]"
               id="lastCerti"
               to={
                 "https://drive.google.com/file/d/1xb43v9bXq7YhfJh-pLys773u6-qJj3hF/view"
               }
             >
               <img
-                className="w-full rounded-xl hover:scale-105 cursor-pointer"
+                className="w-full rounded-xl hover:shadow-lg cursor-pointer"
                 src={
                   "https://res.cloudinary.com/dqusuosoq/image/upload/v1726937221/Portfolio/certificates/Data_Mining_-_Great_Learning_page-0001_rzfhru.jpg"
                 }
