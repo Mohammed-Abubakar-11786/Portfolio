@@ -850,7 +850,7 @@ function Home() {
               />{" "}
             </Link>
             <Link
-              className="w-3/5 md:w-[40%]"
+              className="w-3/5 md:w-[38%]"
               to={
                 "https://drive.google.com/file/d/1RYDZI2NSDaIAwWle09iIc90rCXS2VGP5/view"
               }
