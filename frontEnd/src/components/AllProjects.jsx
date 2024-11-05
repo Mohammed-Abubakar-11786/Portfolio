@@ -13,10 +13,7 @@ let simonSayGameImg =
 function AllProjects() {
   return (
     <div className="w-full h-full flex flex-wrap gap-x-2 gap-y-2 justify-evenly items-start mt-6">
-      <Link
-        className="w-fit h-fit"
-        to={"https://socialbook-klzq.onrender.com/"}
-      >
+      <Link className="w-fit h-fit" to={"https://socialbook-abu.onrender.com"}>
         <div>
           <img
             src={socialBookImg}
