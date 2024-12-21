@@ -266,7 +266,7 @@ function Home() {
                 Mohammed Abubakar
               </h1>
               <h1 className="text-center text-sm sm:text-lg lg:text-xl font-bold text-orange-500 xl:text-2xl">
-                Aspirant Software Developer
+                Aspiring MERN Stack Developer
               </h1>
             </div>
           </div>
